@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "Gmail": {
+      "type": "http",
+      "url": "REPLACE_WITH_GMAIL_MCP_URL"
+    }
+  }
+}
