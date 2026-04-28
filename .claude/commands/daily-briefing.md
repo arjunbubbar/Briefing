@@ -1,6 +1,6 @@
 ---
-description: Produce the Daily Finance Briefing and create a Gmail draft to arjunbubbar@gmail.com
-allowed-tools: WebSearch, WebFetch, mcp__Gmail__create_draft
+description: Produce the Daily Finance Briefing and commit it to the repo (GitHub Actions emails it)
+allowed-tools: WebSearch, WebFetch, Bash, Write
 ---
 
 Produce a Daily Finance Briefing for today. UK local times. ~800 words. Declarative prose.
@@ -12,8 +12,6 @@ All data must be from today's session or the most recent market close. State the
 If today is a weekend or UK bank holiday, use the most recent prior trading session and label the briefing accordingly.
 
 Cover: FTSE 100/250, GBP/USD, UK 10Y gilt, Bank Rate, S&P 500, Nasdaq 100, US 10Y, DXY, Fed funds, Euro Stoxx 50, Nikkei 225, VIX, Brent, gold, copper, TTF gas, 4-5 headlines, macro prints today, one asset manager note, one stock deep dive.
-
-Then create a Gmail draft to arjunbubbar@gmail.com, subject "Daily Finance Briefing — [today's date]".
 
 Body must be HTML with inline CSS. Structure:
 
@@ -31,3 +29,16 @@ Body must be HTML with inline CSS. Structure:
 Use clean sans-serif (font-family: Arial, sans-serif). Tables: border-collapse: collapse; cellpadding 8px; thin borders (#ddd). Headers: background #222, white text.
 
 Footer: "Informational only. Not financial advice."
+
+## Delivery
+
+After producing the HTML body:
+
+1. Write the file to `briefings/YYYY-MM-DD.html` (UK date).
+2. Stage, commit and push:
+   ```
+   git add briefings/YYYY-MM-DD.html
+   git commit -m "briefing: YYYY-MM-DD"
+   git push origin HEAD
+   ```
+3. The `email-briefing` GitHub Actions workflow will pick up the new file and email it to arjunbubbar@gmail.com automatically. Do NOT attempt to send email yourself.
