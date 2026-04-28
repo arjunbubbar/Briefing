@@ -15,7 +15,10 @@
     "allow": [
       "WebSearch",
       "WebFetch",
-      "mcp__Gmail__create_draft"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Write"
     ]
   }
 }
